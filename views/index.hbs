@@ -1,14 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="headers">
+  <div class="header">Random</div>
+  <div class="header">Password</div>
+  <div class="header">Generator</div>
+</div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-</head>
+<form action="/" method="post" class="form">
+  <div class="title">Choose your specification</div>
+  <hr>
+  <div class="label">
+    <label for="length" class="space">Password Length</label>
+    <div class="have_small">
+      <input type="number" name="length" id="length" min="4" max="16">
+      <small class="small">Length is availabe between 4 ~ 16</small>
+    </div>
+  </div>
 
-<body>
-  <h1>Welcome to Password Generator</h1>
-</body>
+  <div class="label">
+    <label for="uppercase">Include Uppercases Characters</label>
+    <div>
+      <input type="checkbox" name="uppercase" id="uppercase"> (e.g. ABCDE)
+    </div>
+  </div>
 
-</html>
+  <div class="label">
+    <label for="lowercase">Include Lowercases Characters</label>
+    <div>
+      <input type="checkbox" name="lowercase" id="lowercase"> (e.g. abcde)
+    </div>
+  </div>
+
+  <div class="label">
+    <label for="number">Include Numbers</label>
+    <div>
+      <input type="checkbox" name="number" id="number"> (e.g. 12345)
+    </div>
+  </div>
+
+  <div class="label">
+    <label for="symbol">Include Symbols</label>
+    <div>
+      <input type="checkbox" name="symbol" id="symbol"> (e.g. @#$%^)
+    </div>
+  </div>
+
+  <div class="label">
+    <label for="exclude">Exclude Characters</label>
+    <div class="have_small">
+      <input type="text" name="exclude" id="exclude">
+      <small class="small">This characters will not appear in the password</small>
+    </div>
+  </div>
+</form>
+<button type="submit" class="submit">Generate Password</button>
+
+<script>
+  const submitBtn = document.querySelector('.submit')
+  const form = document.querySelector('.form')
+
+  submitBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+    form.submit();
+  })
+</script>
