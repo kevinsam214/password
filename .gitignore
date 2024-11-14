@@ -1,0 +1,3 @@
+/node_modules
+.DS_Store 
+# .DS_Store是 macOS 自動生成的隱藏文件
