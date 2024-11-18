@@ -1,39 +1,48 @@
 body {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 將 Flexbox 的排列方式設為縱向（垂直排列），使元素垂直堆疊 */
   justify-content: center;
   align-items: center;
   background-color: #696969;
+  border: 3px solid red;
 }
 
 .headers {
   display: flex;
   justify-content: center;
-
+  border: 3px solid green;
 }
 
 .header {
   color: #fff;
-  font-family: 'Noto Serif', serif;
+  font-family: 'Noto Serif', serif;/* 設置字體為 Noto Serif，如果該字體不可用則使用系統默認的 serif 字體。 */
   margin: 80px 20px 10px 0;
   font-size: 70px;
-  letter-spacing: 4px;
-  animation: text 2s infinite alternate ease-in-out;
+  letter-spacing: 4px; /* 設置字母之間的間距為 4px。 */
+  animation: text 2s infinite alternate ease-in-out;/* 設置動畫效果，text 是動畫名稱，持續時間 2 秒，無限循環，交替方向，並有緩動效果（ease-in-out） */
+  border: 3px solid orange;
 }
 
-@keyframes text {
+/* 以下為動畫text */
+/* @keyframes 用來定義動畫的過程。這裡的動畫名字叫 text，會改變文字的陰影和變換效果。 */
+@keyframes text {   
 
-  0%,
-  30% {
+  /* 在動畫開始（0%）和 30% 時 */
+  0%, 30% {
+    /* text-shadow 設定文字的陰影效果，有三個不同顏色的陰影，分別偏移 5px,
+      10px,
+      15px，使用不同顏色。 */
     text-shadow:
       5px 5px 5px #B0E0E6,
       10px 10px 10px rgba(0, 0, 0, 0.5),
       15px 15px 15px #808080;
+      /* transform: skewX(-25deg) skewY(2deg);
+        ：這會讓文字沿著 X 軸和 Y 軸進行傾斜。 */
     transform: skewX(-25deg) skewY(2deg);
   }
 
-  90%,
-  100% {
+  /* 在動畫的 90% 和 100% 時，文字的陰影將消失，並且不再有傾斜效果，恢復原狀。 */
+  90%, 100% {
     text-shadow: none;
     transform: none;
   }
@@ -47,34 +56,44 @@ body {
   color: #444;
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /* 設置陰影效果，使表單有浮動的效果。陰影顏色是半透明的黑色，並且有 20px 的模糊距離。 */
+  border: 3px solid blue;
 }
 
 .title {
   text-align: center;
-  font-size: 32px;
+  font-size: 32px;/* 設置字體大小為 32px。 */
+  border: 3px solid pink;
 }
 
 .label {
-  display: flex;
+  display: flex; /* 會把原本垂直排列的元素變成水平排列 */
   margin-top: 20px;
   font-size: 20px;
+  border: 3px solid rgb(22, 185, 104);
 }
 
 .label * {
   height: 40px;
-  flex-basis: 50%;
+  flex-basis: 50%; /* 設置元素的基礎寬度為 50%，即每個元素占據容器的一半寬度。 */
+
+  /* flex-grow: 0;
+    和 flex-shrink: 0;
+    ：這些設定確保元素的寬度不會根據容器的大小變化。 */
   flex-grow: 0;
   flex-shrink: 0;
 }
 
 .have_small {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 這設置讓 .have_small 內的元素縱向排列。 */
+  border: 3px solid rgb(243, 0, 170);
 }
 
 .small {
   font-size: 14px;
-  color: #999999
+  color: #999999;
+  border: 3px solid rgb(236, 145, 25);
 }
 
 .submit {
@@ -83,6 +102,7 @@ body {
   margin-top: 40px;
   font-size: 20px;
   color: #fff;
-  background-color: #696969;
+  background-color: #6e8df5; /* 設置背景顏色為灰色。 */
   border: 2px solid #ffffff;
+  
 }
