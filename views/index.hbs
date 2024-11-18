@@ -4,17 +4,21 @@
   <div class="header">Generator</div>
 </div>
 
-<form action="/" method="post" class="form">
+<form action="/" method="post" class="form">          {{!-- action="/" 表示表單資料會被提交到 http://localhost:3000/ --}}
+                                                      {{!-- 如果設置 action="/login"，那麼表單資料會被提交到 http://localhost:3000/login --}}
+                                                      {{!-- 如果設置 action="https://example.com/submit"，那麼表單會將資料發送到 https://example.com/submit --}}
   <div class="title">Choose your specification</div>
   <hr>
   <div class="label">
     <label for="length" class="space">Password Length</label>
     <div class="have_small">
       <input type="number" name="length" id="length" min="4" max="16">
-      <small class="small">Length is availabe between 4 ~ 16</small>
+      {{!-- input當中的type使用number會在顯示框旁邊出現一個可以增減數字的按鈕 --}}
+      <small class="small">Length is availabe between 4 ~ 16</small> {{!-- <small> 標籤：使文字顯示為較小的字體 --}}
     </div>
   </div>
 
+{{!-- label當中的for和下方input當中的id相同時才會產生連結 --}}
   <div class="label">
     <label for="uppercase">Include Uppercases Characters</label>
     <div>
@@ -25,7 +29,7 @@
   <div class="label">
     <label for="lowercase">Include Lowercases Characters</label>
     <div>
-      <input type="checkbox" name="lowercase" id="lowercase"> (e.g. abcde)
+      <input type="checkbox" name="lowercase" id="lowercase"> (e.g. abcde)  {{!-- checkbox是勾選框(複選框)的形式 會出現可以勾選的框框  ps單選框是radio 但有使用的input當中的name要相同才會有單選的效果 --}}
     </div>
   </div>
 
@@ -54,11 +58,11 @@
 <button type="submit" class="submit">Generate Password</button>
 
 <script>
-  const submitBtn = document.querySelector('.submit')
-  const form = document.querySelector('.form')
+  const submitBtn = document.querySelector('.submit')//表示要選取具有 class="submit"的元素 但只選取第一個出現的
+  const form = document.querySelector('.form')//表示要選取有具有 class="form"的元素 但只選取第一個出現的 如果要選取全部要改成querySelectorAll
 
   submitBtn.addEventListener('click', function (event) {
-    event.preventDefault();
-    form.submit();
+    event.preventDefault();//阻止默認的表單提交行為，這是為了防止表單直接提交並刷新頁面
+    form.submit();//手動觸發表單提交，這樣可以保持頁面不刷新，並將資料提交到伺服器。
   })
 </script>
