@@ -104,5 +104,27 @@ body {
   color: #fff;
   background-color: #6e8df5; /* 設置背景顏色為灰色。 */
   border: 2px solid #ffffff;
-  
+  overflow: hidden;
+  position: relative;
 }
+
+/* :after 偽元素 創建一個白色的透明條，模擬光影效果。 */
+.submit::after {
+  content: ''; /* 插入空的伪内容 */
+  position: absolute; /* 伪元素绝对定位，参照父元素 */
+  width: 50px; /* 白光条带的宽度 */
+  height: 300%; /* 白光条带的高度，确保它足够长 */
+  top: -100%; /* 条带的位置在按钮的上方 */
+  left: -50%; /* 条带的位置在按钮的左侧 */
+  background: white; /* 条带的颜色为白色 */
+  opacity: 0.1; /* 白光条带的透明度较低 */
+  transform: rotate(-45deg); /* 条带倾斜 45 度 */
+  transition: left 0.8s ease-in; /* 当 `left` 属性改变时，触发 0.8 秒的平滑动画 */
+}
+
+
+.submit:hover::after {
+  left: 120%;
+}
+
+/* 動畫細節： 預設狀態：透明條位於按鈕左上角，超出範圍 (top: -100%; left: -50%; )。 hover 狀態：透明條滑過按鈕，移動到右側 (left: 120%; )。 過渡效果 使用 transition，滑動過程持續 0.3s 並有緩動。 */
