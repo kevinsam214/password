@@ -12,7 +12,7 @@
   <div class="label">
     <label for="length" class="space">Password Length</label>
     <div class="have_small">
-      <input type="number" name="length" id="length" min="4" max="16">
+      <input type="number" name="length" id="length" min="4" max="16" value="{{option.length}}">
       {{!-- input當中的type使用number會在顯示框旁邊出現一個可以增減數字的按鈕 --}}
       <small class="small">Length is availabe between 4 ~ 16</small> {{!-- <small> 標籤：使文字顯示為較小的字體 --}}
     </div>
@@ -22,48 +22,75 @@
   <div class="label">
     <label for="uppercase">Include Uppercases Characters</label>
     <div>
-      <input type="checkbox" name="uppercase" id="uppercase">
-      <label for="uppercase" class="checkbox">(e.g. ABCDE)</label>{{!-- (e.g. ABCDE)也因為for和input當中的id相同 所以產生連結 --}}
+      {{!-- <input type="checkbox" name="uppercase" id="uppercase">
+      <label for="uppercase" class="checkbox">(e.g. ABCDE)</label>(e.g. ABCDE)也因為for和input當中的id相同 所以產生連結 --}}
+      <input type="checkbox" name="uppercase" id="uppercase" {{#if option.uppercase}}checked{{/if}}> (e.g. ABCDE)
     </div>
   </div>
 
   <div class="label">
     <label for="lowercase">Include Lowercases Characters</label>
     <div>
-      <input type="checkbox" name="lowercase" id="lowercase"> (e.g. abcde)  {{!-- checkbox是勾選框(複選框)的形式 會出現可以勾選的框框  ps單選框是radio 但有使用的input當中的name要相同才會有單選的效果 --}}
+      <input type="checkbox" name="lowercase" id="lowercase" {{#if option.lowercase}}checked{{/if}}> (e.g. abcde)  {{!-- checkbox是勾選框(複選框)的形式 會出現可以勾選的框框  ps單選框是radio 但有使用的input當中的name要相同才會有單選的效果 --}}
     </div>
   </div>
 
   <div class="label">
     <label for="number">Include Numbers</label>
     <div>
-      <input type="checkbox" name="number" id="number"> (e.g. 12345)
+      <input type="checkbox" name="number" id="number" {{#if option.number}}checked{{/if}}> (e.g. 12345)
     </div>
   </div>
 
   <div class="label">
     <label for="symbol">Include Symbols</label>
     <div>
-      <input type="checkbox" name="symbol" id="symbol"> (e.g. @#$%^)
+      <input type="checkbox" name="symbol" id="symbol" {{#if option.symbol}}checked{{/if}}> (e.g. @#$%^)
     </div>
   </div>
 
   <div class="label">
     <label for="exclude">Exclude Characters</label>
     <div class="have_small">
-      <input type="text" name="exclude" id="exclude">
+      <input type="text" name="exclude" id="exclude" value="{{option.exclude}}">
       <small class="small">This characters will not appear in the password</small>
     </div>
   </div>
+  
+  {{#if password}}
+    <div class="password">
+      Your Password: <code>{{password}}</code>
+    </div>
+  {{/if}}
+
 </form>
 <button type="submit" class="submit">Generate Password</button>
 
 <script>
   const submitBtn = document.querySelector('.submit')//表示要選取具有 class="submit"的元素 但只選取第一個出現的
   const form = document.querySelector('.form')//表示要選取有具有 class="form"的元素 但只選取第一個出現的 如果要選取全部要改成querySelectorAll
+  const length_Input = document.querySelector('#length')
+  const small = document.querySelector('.small');
 
   submitBtn.addEventListener('click', function (event) {
-    event.preventDefault();//阻止默認的表單提交行為，這是為了防止表單直接提交並刷新頁面
+    //event.preventDefault();//阻止默認的表單提交行為，這是為了防止表單直接提交並刷新頁面
+    if (length_Input.classList.contains('small_red')) {//感覺沒什麼意義因為跑不進這個if迴圈 感覺是以防萬一而已
+      return
+    }//classList.contains()檢查元素是否有某個class class在此指(small_red)，返回 true/false
     form.submit();//手動觸發表單提交，這樣可以保持頁面不刷新，並將資料提交到伺服器。
   })
+  
+  //keyup指的是鍵盤按鍵放開時觸發
+  length_Input.addEventListener('keyup', function (e) { 
+    const length = parseInt(length_Input.value);  //parseInt 是 JavaScript 中的內建函數，用來將一個字串（string）轉換為整數(int) 但當字串開頭不是數字時 會出現NaN
+    if (length < 4 || length > 16) {
+      small.classList.add('small_red');
+      small.classList.remove('small_green')
+    } else if (length_Input.value.length === 0) {
+      small.classList.remove('small_red', 'small_green');
+    } else {
+      small.classList.add('small_green');
+      small.classList.remove('small_red');
+    }
+  });
 </script>

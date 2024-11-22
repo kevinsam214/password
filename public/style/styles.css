@@ -57,6 +57,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   /* 設置陰影效果，使表單有浮動的效果。陰影顏色是半透明的黑色，並且有 20px 的模糊距離。 */
+  font-family: 'Bodoni Moda', serif;
   border: 3px solid blue;
 }
 
@@ -94,6 +95,32 @@ body {
   font-size: 14px;
   color: #999999;
   border: 3px solid rgb(236, 145, 25);
+}
+
+.small_red {
+  color: #E6005C;
+}
+
+.small_green {
+  color: #4DE680;
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  height: 60px;
+  padding: 20px;
+  align-items: center;
+  background-color: #B0E0E6;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+code {
+  margin-left: 20px;
+  font-size: 20px;
+  color: #F08080;
 }
 
 .submit {
