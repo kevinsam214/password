@@ -49,4 +49,4 @@ function generatePassword(data) {
   return password;
 };//使用迴圈生成密碼，迴圈次數為密碼長度（data.length）。
 
-module.exports = generatePassword;//這行程式碼將 generatePassword 函式導出，使其他檔案可以透過 require 引入並使用它。
+module.exports = generatePassword;//這行程式碼將 generatePassword 函式導出，使其他檔案可以透過 require 引入並使用它。在app.js當中可以呼叫const generatePassword = require('./main')

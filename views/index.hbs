@@ -59,7 +59,14 @@
   
   {{#if password}}
     <div class="password">
-      Your Password: <code>{{password}}</code>
+      <div>
+        Your Password: <code id="code">{{password}}</code>
+      </div>
+      <button class="button" type="button" onclick="copy()">Copy {{!-- onclick="copy()"當用戶點擊此按鈕時，會觸發 copy() 函數。舊式下方的function copy() --}}
+        <span class="material-symbols-outlined">
+          content_copy
+        </span>
+      </button>
     </div>
   {{/if}}
 
@@ -94,3 +101,34 @@
     }
   });
 </script>
+  <script>
+    function copy() {
+      const copyText = document.getElementById("code");//這行代碼通過 getElementById("code") 方法獲取具有 id="code" 的 HTML 元素
+
+      const aux = document.createElement("input");//這行代碼創建了一個新的 input 元素，並將其賦值給變數 aux。這個 input 元素是臨時創建的，用來作為一個可選中並複製的文本框。
+      // 设置文本输入框的值为要复制的链接
+
+      aux.setAttribute("value", copyText.textContent);
+      //setAttribute("value", copyText.textContent) 將 copyText 元素的文本內容（即密碼）設置為新創建的 input 元素的 value 屬性。這意味著 input 框中的內容將是顯示的密碼文本。
+
+      document.body.appendChild(aux);
+      //這行代碼將臨時創建的 input 元素 aux 添加到頁面的 body 中。這樣它就成為頁面的一部分，並且能夠被選中（即被選取文本）。
+      
+      aux.select();
+      //aux.select() 將選中 input 元素中的所有文本。這是實現複製功能的關鍵步驟，因為選中的文本才能被複製。
+
+      document.execCommand("copy");
+      //execCommand("copy") 是一個瀏覽器的命令，用來執行複製操作。當選中文本後，調用 execCommand("copy") 就會將選中的文本複製到剪貼板。
+      //execCommand() 方法支持多種命令，其中包括：
+      //copy: 複製選中的文本到剪貼板
+      //cut: 剪切選中的文本
+      //paste: 粘貼剪貼板的內容
+      //selectAll: 選中所有內容
+      //undo: 撤銷上一步操作
+      //redo: 重做上一步操作
+      
+
+      document.body.removeChild(aux);
+      //最後，這行代碼將臨時創建的 input 元素從頁面中移除。這是為了清理頁面，防止不必要的元素存在。複製過程完成後，這個臨時元素不再需要
+    }
+ </script>
